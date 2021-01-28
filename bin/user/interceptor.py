@@ -609,8 +609,10 @@ class Consumer(object):
         def do_POST(self):
             # get the payload from an HTTP POST
             length = int(self.headers["Content-Length"])
-            data = str(self.rfile.read(length))
+            # data = str(self.rfile.read(length))
+            data = self.rfile.read(length).decode("utf-8")
             logdbg('POST: %s' % _obfuscate_passwords(data))
+            loginf('POST: length %d, data=[%s] and put...' % (length,_obfuscate_passwords(data)))
             Consumer.queue.put(data)
             self.reply()
 
@@ -619,7 +621,8 @@ class Consumer(object):
 
         def do_GET(self):
             # get the query string from an HTTP GET
-            data = urlparse.urlparse(self.path).query
+            # data = urlparse.urlparse(self.path).query
+            data = self.path
             logdbg('GET: %s' % _obfuscate_passwords(data))
             Consumer.queue.put(data)
             self.reply()

@@ -2307,6 +2307,7 @@ class EcowittClient(Consumer):
         # map labels to observation names
         LABEL_MAP = {
             'baromabsin': 'pressure',
+            'baromrelin' : 'altimeter',          
             'humidity': 'humidity_out',
             'humidityin': 'humidity_in',
             'tempf': 'temperature_out',
@@ -2367,7 +2368,7 @@ class EcowittClient(Consumer):
         }
 
         IGNORED_LABELS = [
-            'PASSKEY', 'dateutc', 'stationtype', 'model', 'freq', 'baromrelin',
+            'PASSKEY', 'dateutc', 'stationtype', 'model', 'freq',
             'maxdailygust', 'eventrainin', 'hourlyrainin', 'dailyrainin',
             'weeklyrainin', 'monthlyrainin', 'yearlyrainin',
             'pm25_avg_24h_ch1', 'winddir_avg10m', 'windspdmph_avg10m',
